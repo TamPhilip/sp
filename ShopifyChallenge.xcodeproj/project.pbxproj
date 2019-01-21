@@ -12,7 +12,6 @@
 		1C19BC3021EEA89E0003ACE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C19BC2E21EEA89E0003ACE0 /* Main.storyboard */; };
 		1C19BC3221EEA89F0003ACE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C19BC3121EEA89F0003ACE0 /* Assets.xcassets */; };
 		1C19BC3521EEA89F0003ACE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C19BC3321EEA89F0003ACE0 /* LaunchScreen.storyboard */; };
-		1C19BC4B21EEA89F0003ACE0 /* ShopifyChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C19BC4A21EEA89F0003ACE0 /* ShopifyChallengeUITests.swift */; };
 		1C19BC5D21EEB0F80003ACE0 /* CollectionDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C19BC5C21EEB0F80003ACE0 /* CollectionDetailController.swift */; };
 		1C19BC6F21EF9C1B0003ACE0 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C19BC6E21EF9C1B0003ACE0 /* DataFetcher.swift */; };
 		1C19BC7521EF9CA00003ACE0 /* CollectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C19BC7421EF9CA00003ACE0 /* CollectList.swift */; };
@@ -28,19 +27,11 @@
 		1CDB0F4621F2749500819D0C /* CustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CDB0F4421F2749500819D0C /* CustomCollectionCell.xib */; };
 		1CDB0F4921F2781800819D0C /* CollectionDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB0F4721F2781800819D0C /* CollectionDetailCell.swift */; };
 		1CDB0F4A21F2781800819D0C /* CollectionDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CDB0F4821F2781800819D0C /* CollectionDetailCell.xib */; };
-		82EFF2F1DA726435AEAA0E2C /* Pods_ShopifyChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F4691EE476540AE21416660 /* Pods_ShopifyChallengeUITests.framework */; };
 		C0A5ACF34849B8D8E4C69CE5 /* Pods_ShopifyChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE4F7D02DDB4A867FB912B5 /* Pods_ShopifyChallenge.framework */; };
 		EFF7C48FA9A36C4B62EA53B0 /* Pods_DataFetcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCFF630DEA3B8E698EAAD21 /* Pods_DataFetcherTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1C19BC4721EEA89F0003ACE0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1C19BC1F21EEA89E0003ACE0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1C19BC2621EEA89E0003ACE0;
-			remoteInfo = ShopifyChallenge;
-		};
 		1CDB0F3021F1069500819D0C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1C19BC1F21EEA89E0003ACE0 /* Project object */;
@@ -59,9 +50,6 @@
 		1C19BC3121EEA89F0003ACE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C19BC3421EEA89F0003ACE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C19BC3621EEA89F0003ACE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1C19BC4621EEA89F0003ACE0 /* ShopifyChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopifyChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C19BC4A21EEA89F0003ACE0 /* ShopifyChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyChallengeUITests.swift; sourceTree = "<group>"; };
-		1C19BC4C21EEA89F0003ACE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C19BC5C21EEB0F80003ACE0 /* CollectionDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailController.swift; sourceTree = "<group>"; };
 		1C19BC6E21EF9C1B0003ACE0 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		1C19BC7421EF9CA00003ACE0 /* CollectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectList.swift; sourceTree = "<group>"; };
@@ -98,14 +86,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1C19BC4321EEA89F0003ACE0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82EFF2F1DA726435AEAA0E2C /* Pods_ShopifyChallengeUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1CDB0F2821F1069500819D0C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				1C19BC2921EEA89E0003ACE0 /* ShopifyChallenge */,
-				1C19BC4921EEA89F0003ACE0 /* ShopifyChallengeUITests */,
 				1CDB0F2C21F1069500819D0C /* DataFetcherTests */,
 				1C19BC2821EEA89E0003ACE0 /* Products */,
 				6D563046B6DA46F317A3074F /* Pods */,
@@ -133,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				1C19BC2721EEA89E0003ACE0 /* ShopifyChallenge.app */,
-				1C19BC4621EEA89F0003ACE0 /* ShopifyChallengeUITests.xctest */,
 				1CDB0F2B21F1069500819D0C /* DataFetcherTests.xctest */,
 			);
 			name = Products;
@@ -148,15 +126,6 @@
 				1C19BC5B21EEAEA60003ACE0 /* Resources */,
 			);
 			path = ShopifyChallenge;
-			sourceTree = "<group>";
-		};
-		1C19BC4921EEA89F0003ACE0 /* ShopifyChallengeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1C19BC4A21EEA89F0003ACE0 /* ShopifyChallengeUITests.swift */,
-				1C19BC4C21EEA89F0003ACE0 /* Info.plist */,
-			);
-			path = ShopifyChallengeUITests;
 			sourceTree = "<group>";
 		};
 		1C19BC5821EEAC860003ACE0 /* Model */ = {
@@ -293,25 +262,6 @@
 			productReference = 1C19BC2721EEA89E0003ACE0 /* ShopifyChallenge.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1C19BC4521EEA89F0003ACE0 /* ShopifyChallengeUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1C19BC5521EEA89F0003ACE0 /* Build configuration list for PBXNativeTarget "ShopifyChallengeUITests" */;
-			buildPhases = (
-				CC1EF22E349630B120C02AA3 /* [CP] Check Pods Manifest.lock */,
-				1C19BC4221EEA89F0003ACE0 /* Sources */,
-				1C19BC4321EEA89F0003ACE0 /* Frameworks */,
-				1C19BC4421EEA89F0003ACE0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1C19BC4821EEA89F0003ACE0 /* PBXTargetDependency */,
-			);
-			name = ShopifyChallengeUITests;
-			productName = ShopifyChallengeUITests;
-			productReference = 1C19BC4621EEA89F0003ACE0 /* ShopifyChallengeUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		1CDB0F2A21F1069500819D0C /* DataFetcherTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1CDB0F3221F1069500819D0C /* Build configuration list for PBXNativeTarget "DataFetcherTests" */;
@@ -344,10 +294,6 @@
 					1C19BC2621EEA89E0003ACE0 = {
 						CreatedOnToolsVersion = 10.1;
 					};
-					1C19BC4521EEA89F0003ACE0 = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = 1C19BC2621EEA89E0003ACE0;
-					};
 					1CDB0F2A21F1069500819D0C = {
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 1C19BC2621EEA89E0003ACE0;
@@ -368,7 +314,6 @@
 			projectRoot = "";
 			targets = (
 				1C19BC2621EEA89E0003ACE0 /* ShopifyChallenge */,
-				1C19BC4521EEA89F0003ACE0 /* ShopifyChallengeUITests */,
 				1CDB0F2A21F1069500819D0C /* DataFetcherTests */,
 			);
 		};
@@ -384,13 +329,6 @@
 				1CDB0F4A21F2781800819D0C /* CollectionDetailCell.xib in Resources */,
 				1CDB0F4621F2749500819D0C /* CustomCollectionCell.xib in Resources */,
 				1C19BC3021EEA89E0003ACE0 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1C19BC4421EEA89F0003ACE0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,24 +402,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC1EF22E349630B120C02AA3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ShopifyChallengeUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -502,14 +422,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1C19BC4221EEA89F0003ACE0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1C19BC4B21EEA89F0003ACE0 /* ShopifyChallengeUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1CDB0F2721F1069500819D0C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -525,11 +437,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1C19BC4821EEA89F0003ACE0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1C19BC2621EEA89E0003ACE0 /* ShopifyChallenge */;
-			targetProxy = 1C19BC4721EEA89F0003ACE0 /* PBXContainerItemProxy */;
-		};
 		1CDB0F3121F1069500819D0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1C19BC2621EEA89E0003ACE0 /* ShopifyChallenge */;
@@ -711,48 +618,6 @@
 			};
 			name = Release;
 		};
-		1C19BC5621EEA89F0003ACE0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98BBBDA91F12E485D939B396 /* Pods-ShopifyChallengeUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TDD38ER876;
-				INFOPLIST_FILE = ShopifyChallengeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shopify.ShopifyChallengeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = ShopifyChallenge;
-			};
-			name = Debug;
-		};
-		1C19BC5721EEA89F0003ACE0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A020DE06714E1D97E8CF89F7 /* Pods-ShopifyChallengeUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TDD38ER876;
-				INFOPLIST_FILE = ShopifyChallengeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shopify.ShopifyChallengeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = ShopifyChallenge;
-			};
-			name = Release;
-		};
 		1CDB0F3321F1069500819D0C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 963366081734C52F737737A9 /* Pods-DataFetcherTests.debug.xcconfig */;
@@ -814,15 +679,6 @@
 			buildConfigurations = (
 				1C19BC5021EEA89F0003ACE0 /* Debug */,
 				1C19BC5121EEA89F0003ACE0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1C19BC5521EEA89F0003ACE0 /* Build configuration list for PBXNativeTarget "ShopifyChallengeUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1C19BC5621EEA89F0003ACE0 /* Debug */,
-				1C19BC5721EEA89F0003ACE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
