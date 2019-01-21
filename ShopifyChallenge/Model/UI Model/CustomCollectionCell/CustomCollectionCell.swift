@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+    CustomCollectionCell for CustomCollectionController Table View
+ */
+
 class CustomCollectionCell: UITableViewCell {
 
     @IBOutlet weak var collectionImageView: UIImageView!

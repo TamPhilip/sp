@@ -113,4 +113,37 @@ class DataFetcherTests: XCTestCase {
 
         XCTAssert(DataFetcher.shared.productByID.count != 0)
     }
+    
+    func test_C_Collect() {
+        var collectionURLs: String = ""
+        
+         let promise = expectation(description: "get product URLS received")
+        
+        guard let collectionList  = DataFetcher.shared.collectionList else {
+            XCTFail("Failed")
+            return
+        }
+        
+        for collection in collectionList.collections {
+            collectionURLs += "\(collection.id),"
+        }
+        let collectionString = String(collectionURLs.dropLast())
+        print(collectionString)
+         let url = "https://shopicruit.myshopify.com/admin/collects.json?collection_id=\(collectionString)&page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
+        
+        DataFetcher.shared.fetchCollect(url: url) { (success, error, collectList) in
+            if let collectList = collectList {
+                print(collectList)
+                promise.fulfill()
+            } else {
+                if success {
+                    promise.fulfill()
+                } else {
+                     XCTFail("Failed")
+                }
+            }
+        }
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
 }

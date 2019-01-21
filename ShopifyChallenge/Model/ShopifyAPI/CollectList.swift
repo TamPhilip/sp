@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import Alamofire
 
+
+/*
+    Collect structure helpers for JSON Decoding
+ */
+
 struct CollectList: Decodable {
     var collects: [Collect]
 }

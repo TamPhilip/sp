@@ -8,6 +8,11 @@
 
 import Foundation
 
+
+/*
+    ProductList structure helpers for JSON Decoding
+ */
+
 struct ProductList: Decodable {
     var products: [Product]
 }

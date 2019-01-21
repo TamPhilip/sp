@@ -11,6 +11,7 @@ import SDWebImage
 
 class CollectionDetailController: UIViewController {
     
+    //Table View
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             let nib = UINib(nibName: "CollectionDetailCell", bundle: nil)
@@ -20,6 +21,8 @@ class CollectionDetailController: UIViewController {
             tableView.dataSource = self
         }
     }
+    
+    // Details Views (Top View where it will display the text show or hide)
     @IBOutlet weak var detailsView: UIView! {
         didSet {
             let tapGes = UITapGestureRecognizer(target: self, action: #selector(tapHeight))
@@ -52,17 +55,23 @@ class CollectionDetailController: UIViewController {
     @IBOutlet weak var descriptionlabel: UILabel!
     @IBOutlet weak var descriptionHeightConstraint: NSLayoutConstraint!
     
+    // Tableview helper
     var products: [Product] = []
+    
+    // From the sent values
     var collection: CustomCollection?
     var collectList: CollectList?
     var sum: Int = 0
  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Setup UI
         setupNav()
         setupDescriptionView()
         
+        // Setup Product Fetching
         guard let id = collection?.id else {
             print("ID is not initialized")
             return
@@ -82,6 +91,7 @@ class CollectionDetailController: UIViewController {
     }
     
     func setupNav() {
+        // Right Label
         let productCountLabel = UILabel()
         productCountLabel.text = "QTY"
         productCountLabel.font = UIFont(name: "Helvetica", size: 14)!
@@ -90,16 +100,18 @@ class CollectionDetailController: UIViewController {
         let rightItem = UIBarButtonItem(customView: productCountLabel)
         self.navigationItem.rightBarButtonItem = rightItem
         
+        // Title
         self.navigationItem.title = collection?.title.getStringRemoving(r: "collection")
     }
     
-    
+    // Setups the Description Card (View)
     func setupDescriptionView() {
         guard let collection = collection else {
             print("Collection Failed")
             return
         }
         
+        // Checks if there is a description if not indicate there is no description
         if collection.bodyHtml == "" {
             descriptionlabel.text = "No Description"
         } else {
@@ -107,7 +119,7 @@ class CollectionDetailController: UIViewController {
             descriptionlabel.text = collection.bodyHtml
         }
         
-        
+        // Sets the Collection Image
         guard let url = URL(string: collection.image.src) else {
             print("Image URL FAILED")
             return
@@ -118,12 +130,14 @@ class CollectionDetailController: UIViewController {
         uniqueProductLabel.text = "Unique Products: \(sum)"
     }
     
+    // Check if the products have been fetched if not then fetch them, if yes then it means that they re in product by ID
     func checkIfFetched(id: Int) -> Bool {
         
         guard let list =  DataFetcher.shared.productByID[id] else {
             return false
         }
         
+        // Sets the Products
         products = list
         
         if products.count > 0 {
@@ -133,6 +147,7 @@ class CollectionDetailController: UIViewController {
         }
     }
     
+    // Fetch the product by creating a single URL to access the necessary product JSON
     func fetchProductList(id: Int, _ completionHandler: @escaping (Bool) -> ()) {
         
         guard let collectList = collectList else {
@@ -141,6 +156,7 @@ class CollectionDetailController: UIViewController {
             return
         }
         
+        // URL creation
         var productIDStr = ""
         
         for collect in collectList.collects {
@@ -149,8 +165,10 @@ class CollectionDetailController: UIViewController {
         
         let productURL = "https://shopicruit.myshopify.com/admin/products.json?ids=\(productIDStr)&page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
         
+        // Fetch the Product JSON and also associating the collection ID to those specific products (Product Array)
         DataFetcher.shared.fetchProduct(url: productURL, collectID: id, { (success, error) in
             if success {
+                // Sets the products helper to the products of the collectionID
                 self.products = DataFetcher.shared.productByID[id] ?? []
                 completionHandler(success)
             } else {
@@ -165,8 +183,13 @@ class CollectionDetailController: UIViewController {
 
 }
 
+/*
+    MARK: TableView delegate and datasource methods
+ */
+
 
 extension CollectionDetailController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          return products.count
     }
@@ -175,6 +198,7 @@ extension CollectionDetailController: UITableViewDelegate, UITableViewDataSource
         return 100
     }
     
+    // Cell UI Editing
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = tableView.dequeueReusableCell(withIdentifier: "CollectionDetailCell", for: indexPath)
         guard let cell = model as? CollectionDetailCell else {
@@ -189,12 +213,16 @@ extension CollectionDetailController: UITableViewDelegate, UITableViewDataSource
             return cell
         }
         
+        
+        // create title removing redundant "collection" word
         let collectionT = collection.title.getStringRemoving(r: "collection")
         
         cell.collectionLabel.text = collectionT
         
+        // create title removing redundant collection key word from every word"
         cell.titleLabel.text = product.title.getStringRemoving(r: collectionT)
         
+        // Sums all fo the inventory quantity of each variant and set it to the inventoryLabel
         var sum = 0
         for variant in product.variants {
             sum += variant.inventoryQuan
@@ -202,24 +230,30 @@ extension CollectionDetailController: UITableViewDelegate, UITableViewDataSource
         
         cell.inventoryLabel.text = "\(sum)"
         
+        
+        // Image Setting
         guard let url = URL(string: product.image.src) else {return cell}
         guard let collectionURL = URL(string: collection.image.src) else {return cell}
         
+        // Sets the productImageView with sdweb because it will facilitate cell changing
         cell.productImageView.sd_setImage(with: url, completed: nil)
         
+        //Sets the image of the collectionImageView with UIEdgeInsets because it will adjust the height
         DispatchQueue.global().async {
-            let data = try? Data(contentsOf: collectionURL) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            let data = try? Data(contentsOf: collectionURL)
             DispatchQueue.main.async {
                 cell.collectionImageView.image = UIImage(data: data!)?.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: -2, right: 0))
             }
         }
         
+        // Rounding the imageView
         cell.collectionImageView.layer.cornerRadius = cell.collectionImageView.frame.height / 2
         cell.collectionImageView.clipsToBounds = true
         
         return cell
     }
     
+    // Deselect the row (UI Purpose)
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath,  animated: true)
     }
@@ -229,6 +263,7 @@ extension CollectionDetailController: UITableViewDelegate, UITableViewDataSource
 // MARK: Details Expansion Functions
 extension CollectionDetailController {
     
+    // Expands or hides the descriptionView by changing its height depending on its current height
     @objc func tapHeight() {
         if descriptionHeightConstraint.constant == 0 {
             increaseDescriptionHeight()
@@ -237,8 +272,12 @@ extension CollectionDetailController {
         }
     }
     
+    // If lowering handle the hiding of the description View
     @objc func lowerDescriptionHeight() {
+        // Changes the title of the label
         self.detailsLabel.text = "Show details"
+        
+        // Hides the views inside of the descriptionView to smoothen out the animation
         UIView.animate(withDuration: 0.1) {
             self.collectionImageView.alpha = 0
             if let _ = self.descriptionlabel {
@@ -246,27 +285,36 @@ extension CollectionDetailController {
             }
             self.uniqueProductLabel.alpha = 0
         }
+        
+        // Changes the height, and the arrow direction
         UIView.animate(withDuration: 0.3) {
             self.arrowImageView.transform =  CGAffineTransform.identity
             self.descriptionHeightConstraint.constant = 0
             
+            // Will layout the constraint animations
             self.view.layoutIfNeeded()
         }
     }
     
+    // If increasing handle the show of the description View
     @objc func increaseDescriptionHeight() {
+        // Changes the title of the label
         self.detailsLabel.text = "Hide details"
         UIView.animate(withDuration: 0.3) {
             
+            // Unhides the views inside of the descriptionView
             self.collectionImageView.alpha = 1
             if let _ = self.descriptionlabel {
                 self.descriptionlabel.alpha = 1
             }
+            
+            // Changes the height, and the arrow direction
             self.uniqueProductLabel.alpha = 1
             self.arrowImageView.transform = CGAffineTransform(rotationAngle: .pi)
             
             self.descriptionHeightConstraint.constant = 110
             
+            // Will layout the constraint animations
             self.view.layoutIfNeeded()
         }
     }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Extension will allow to remove the word that is found within a string
 extension String {
     func getStringRemoving(r: String) -> String {
         var st = "";

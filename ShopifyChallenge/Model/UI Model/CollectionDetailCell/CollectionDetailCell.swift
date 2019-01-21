@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+/*
+    CollectionDetailCell for CollectionDetailController Table View
+ */
+
 class CollectionDetailCell: UITableViewCell {
 
     @IBOutlet weak var productImageView: UIImageView! {
@@ -31,6 +36,7 @@ class CollectionDetailCell: UITableViewCell {
         
     }
     
+    // Rounds the ProductImageView
     override func draw(_ rect: CGRect) {
         productImageView.layer.cornerRadius = self.productImageView.frame.height / 2
     }

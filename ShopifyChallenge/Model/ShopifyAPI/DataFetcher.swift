@@ -16,6 +16,7 @@ import Foundation
  - Fetches Collections
  - Fetches Collects
  - Fetches the Products
+ - Handles all of the decoding
  
  */
 
@@ -24,7 +25,7 @@ class DataFetcher {
     // List of all Collections from URL
     public var collectionList: CollectionList?
     
-    var collectList: [Int: CollectList] = [:]
+    var collectMap: [Int: CollectList] = [:]
     
     // Key: Collection ID, Value: Product
     public var productByID: [Int: [Product]] = [:]
@@ -95,6 +96,17 @@ class DataFetcher {
         }
     }
     
+    
+    /*
+     
+     function: fetchCollect
+     url: String
+     collectID: Int  (The Collection ID that will be associated with the collectList)
+     completionHandler: @escaping (Bool, Error, CollectList?) -> () -> For later
+     Makes a get request to get the collects of each collection, once it has been called then the response will send back the json for the collects and run through the decode collect function to create the collectList for that collection and also associate the collectList to that collection ID.
+     */
+
+    
     public func fetchCollect(url: String, collectID: Int, _ completionHandler: @escaping (Bool, Error?, CollectList?) -> () ) {
         let manager = Alamofire.SessionManager.default
         
@@ -122,10 +134,20 @@ class DataFetcher {
         }
     }
     
+    /*
+     
+     function: decodeCollect
+     data: Data
+     collectID:  Int  (The Collection ID that will be associated with the collectList)
+     completionHandler: @escaping (Bool, Error) -> ()
+     Decodes the JSON data into a CollectList and then adds it to the collectMap
+     
+     */
+    
     private func decodeCollect(data: Data, collectID: Int, _ completionHandler: (Bool, Error?, CollectList?) -> () ) {
         do {
             let collectL = try JSONDecoder().decode(CollectList.self, from: data)
-            collectList[collectID] = collectL
+            collectMap[collectID] = collectL
             completionHandler(true, nil, collectL)
         } catch {
             print("Error while decoding data \(error)")
@@ -133,6 +155,14 @@ class DataFetcher {
         }
     }
     
+    /*
+     
+     function: fetchProduct
+     url: String
+     collectID: Int  (The Collection ID that will be associated with the product array)
+     completionHandler: @escaping (Bool, Error) -> () -> For later
+     Makes a single get request to get all of the productsID that is found in the URL. The reponse will send back a JSOn and it will then be decoded in a productList. which will have a productArray inside.
+     */
     
     public func fetchProduct(url: String, collectID: Int, _ completionHandler: @escaping (Bool, Error?) -> () ) {
         let manager = Alamofire.SessionManager.default
@@ -140,6 +170,9 @@ class DataFetcher {
         let request = manager.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             switch response.result {
             case .success:
+                if let data = response.value as? [String: Any]{
+                    print(data)
+                }
                 if let data = response.data {
                     self.decodeProduct(data: data, collectID: collectID, { (success, error) in
                         if success {
@@ -161,14 +194,33 @@ class DataFetcher {
         }
     }
     
+    
+    /*
+     
+     function: decodeProduct
+     data: Data
+     collectID:  Int  (The Collection ID that will be associated with the productByID)
+     completionHandler: @escaping (Bool, Error) -> ()
+     Decodes the JSON data while checking for duplicates and null values.
+     
+     */
+    
     private func decodeProduct(data: Data, collectID: Int,_ completionHandler: (Bool, Error?) -> () ) {
         do {
+            
             let productList = try JSONDecoder().decode(ProductList.self, from: data)
+            
+            // Check if the productByID is null if it is set the productsArray to it.
             if productByID[collectID] == nil {
                 productByID[collectID] = productList.products
             } else {
-                guard let productL = productByID[collectID] else {return}
+                // If not nil then check if the product is contained within productByID
+                guard let productL = productByID[collectID] else {
+                    print("Failed to get old productByID")
+                    return
+                }
                 for product in productList.products {
+                    // If it does not contain then append the product
                     if !productL.contains(where: { (proc) -> Bool in
                         proc.id == product.id
                     }) {

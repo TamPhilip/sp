@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+    Collection structure helpers for JSON Decoding
+ */
+
 // Root of JSON
 struct CollectionList: Decodable {
     
@@ -19,7 +23,6 @@ struct CollectionList: Decodable {
         case collections = "custom_collections"
     }
 }
-
 
 struct CustomCollection: Decodable {
     var id: Int
