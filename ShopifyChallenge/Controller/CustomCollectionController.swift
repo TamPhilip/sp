@@ -10,6 +10,7 @@ import UIKit
 import ChameleonFramework
 
 class CustomCollectionController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self

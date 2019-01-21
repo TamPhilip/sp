@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 
 class CollectionDetailController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             let nib = UINib(nibName: "CollectionDetailCell", bundle: nil)
@@ -33,6 +33,8 @@ class CollectionDetailController: UIViewController {
             self.detailsView.addGestureRecognizer(upGes)
         }
     }
+    
+    // MARK: Description Label Outlets
     @IBOutlet weak var descriptionView: UIView! {
         didSet {
             let upGes = UISwipeGestureRecognizer(target: self, action: #selector(lowerDescriptionHeight))
@@ -43,6 +45,7 @@ class CollectionDetailController: UIViewController {
         }
     }
     
+    @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var uniqueProductLabel: UILabel!
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var collectionImageView: UIImageView!
@@ -222,6 +225,8 @@ extension CollectionDetailController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+
+// MARK: Details Expansion Functions
 extension CollectionDetailController {
     
     @objc func tapHeight() {
@@ -233,6 +238,7 @@ extension CollectionDetailController {
     }
     
     @objc func lowerDescriptionHeight() {
+        self.detailsLabel.text = "Show details"
         UIView.animate(withDuration: 0.1) {
             self.collectionImageView.alpha = 0
             if let _ = self.descriptionlabel {
@@ -249,7 +255,9 @@ extension CollectionDetailController {
     }
     
     @objc func increaseDescriptionHeight() {
+        self.detailsLabel.text = "Hide details"
         UIView.animate(withDuration: 0.3) {
+            
             self.collectionImageView.alpha = 1
             if let _ = self.descriptionlabel {
                 self.descriptionlabel.alpha = 1
